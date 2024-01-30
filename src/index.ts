@@ -75,7 +75,7 @@ app.post('/videos', (req: Request, res: Response) => {
     if (typeof (req.body.title) !== 'string' || typeof (req.body.author) !== 'string') {
         isValid = false
     }
-    let myErrorsMessages = []
+    let myErrorsMessages:Object[] = []
     checkValid('title', req.body.title, 'string', 40)
     checkValid('author', req.body.author, 'string', 20)
     // checkValid('canBeDownloaded', req.body.canBeDownloaded, 'boolean', 100)
@@ -91,7 +91,7 @@ app.post('/videos', (req: Request, res: Response) => {
         }
     }
 
-    function checkValid(name, data, type, maxLength) {
+    function checkValid(name:string, data:any, type:string, maxLength:number) {
         if (!data && typeof (data) !== type) {
             myErrorsMessages.push({
                 message: 'error',
@@ -166,14 +166,14 @@ app.put('/videos/:id', (req: Request, res: Response) => {
     if (typeof (req.body.title) !== 'string' || typeof (req.body.author) !== 'string') {
         isValid = false
     }
-    let myErrorsMessages = []
+    let myErrorsMessages:Object[] = []
     checkValid('title', req.body.title, 'string', 40)
     checkValid('author', req.body.author, 'string', 20)
     checkValid('canBeDownloaded', req.body.canBeDownloaded, 'boolean', 100)
     checkValid('minAgeRestriction', req.body.minAgeRestriction, 'number', 18)
     checkValid('publicationDate', req.body.publicationDate, 'string', 180)
 
-    function checkValid(name, data, type, maxLength) {
+    function checkValid(name:string, data:any, type:string, maxLength:number) {
         if (!data && typeof (data) !== type) {
             myErrorsMessages.push({
                 message: 'error',
